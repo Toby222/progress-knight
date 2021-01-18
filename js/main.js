@@ -354,7 +354,7 @@ function goBankrupt() {
 
 function setTab(element, selectedTab) {
 
-    var tabs = Array.prototype.slice.call(document.getElementsByClassName("tab"))
+    var x = Array.prototype.slice.call(document.getElementsByClassName("tab"))
     tabs.forEach(function(tab) {
         tab.style.display = "none"
     })
@@ -716,16 +716,13 @@ function autoPromote() {
 
 function checkSkillSkipped(skill) {
     var row = document.getElementById("row " + skill.name);
-    console.log(row.getElementsByClassName("levelskipbox")[0].value);
     var levelToSkip = row.getElementsByClassName("levelskipbox")[0].value;
     
     if(Number.isNaN(levelToSkip) || typeof levelToSkip === undefined || levelToSkip == "")
         {
-            console.log("Bad condition");
         return false;
         }
     
-    console.log("skip level: " + levelToSkip);
     var isSkillSkipped = (levelToSkip <= skill.level);
     return isSkillSkipped;
 }
@@ -737,7 +734,6 @@ function setSkillWithLowestMaxXp() {
         var skill = gameData.taskData[skillName]
         var requirement = gameData.requirements[skillName]
         if (skill instanceof Skill && requirement.isCompleted() && !checkSkillSkipped(skill)) {
-            console.log("mapped skill " + skillName);
             xpDict[skill.name] = skill.level //skill.getMaxXp() / skill.getXpGain()
         }
     }
