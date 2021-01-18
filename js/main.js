@@ -715,9 +715,19 @@ function autoPromote() {
 }
 
 function checkSkillSkipped(skill) {
-    var row = document.getElementById("row " + skill.name)
-    var isSkillSkipped = row.getElementsByClassName("checkbox")[0].checked
-    return isSkillSkipped
+    var row = document.getElementById("row " + skill.name);
+    console.log(row.getElementsByClassName("levelskipbox")[0].value);
+    var levelToSkip = row.getElementsByClassName("levelskipbox")[0].value;
+    
+    if(Number.isNaN(levelToSkip) || typeof levelToSkip === undefined || levelToSkip == "")
+        {
+            console.log("Bad condition");
+        return false;
+        }
+    
+    console.log("skip level: " + levelToSkip);
+    var isSkillSkipped = (levelToSkip <= skill.level);
+    return isSkillSkipped;
 }
 
 function setSkillWithLowestMaxXp() {
@@ -727,6 +737,7 @@ function setSkillWithLowestMaxXp() {
         var skill = gameData.taskData[skillName]
         var requirement = gameData.requirements[skillName]
         if (skill instanceof Skill && requirement.isCompleted() && !checkSkillSkipped(skill)) {
+            console.log("mapped skill " + skillName);
             xpDict[skill.name] = skill.level //skill.getMaxXp() / skill.getXpGain()
         }
     }
@@ -1064,7 +1075,7 @@ gameData.requirements = {
     "Rebirth note 3": new AgeRequirement([document.getElementById("rebirthNote3")], [{requirement: 200}]),
     "Evil info": new EvilRequirement([document.getElementById("evilInfo")], [{requirement: 1}]),
     "Time warping info": new TaskRequirement([document.getElementById("timeWarping")], [{task: "Mage", requirement: 10}]),
-    "Automation": new AgeRequirement([document.getElementById("automation")], [{requirement: 20}]),
+    "Automation": new AgeRequirement([document.getElementById("automation")], [{requirement: 15}]),
     "Quick task display": new AgeRequirement([document.getElementById("quickTaskDisplay")], [{requirement: 20}]),
 
     //Common work
