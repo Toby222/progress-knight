@@ -12,16 +12,17 @@ function changeTab(direction)
              currentTab = i*1;
     }
     
-    var targetTab = currentTab+direction;
-    
-    if( targetTab > (tabs.length - 1)) 
-    {
-        targetTab = 0;
-    }
+    var targetTab = (currentTab+direction) % tabs.length;
     
     if(targetTab < 0)
     {
         targetTab = (tabs.length - 1);
+    }
+    
+    //check for tabs not unlocked
+    while(tabButtons[targetTab].style.display.includes("none") || tabButtons[targetTab].className.includes("hidden") || tabButtons[targetTab].className.includes("hiddenTask")){
+        targetTab = (targetTab+direction) % tabs.length;
+        targetTab = Math.max(0,targetTab);
     }
     
     setTab(tabButtons[targetTab], tabs[targetTab].id);
