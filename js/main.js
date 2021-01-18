@@ -354,7 +354,7 @@ function goBankrupt() {
 
 function setTab(element, selectedTab) {
 
-    var x = Array.prototype.slice.call(document.getElementsByClassName("tab"))
+    var tabs = Array.prototype.slice.call(document.getElementsByClassName("tab"))
     tabs.forEach(function(tab) {
         tab.style.display = "none"
     })
@@ -719,9 +719,9 @@ function checkSkillSkipped(skill) {
     var levelToSkip = row.getElementsByClassName("levelskipbox")[0].value;
     
     if(Number.isNaN(levelToSkip) || typeof levelToSkip === undefined || levelToSkip == "")
-        {
+    {
         return false;
-        }
+    }
     
     var isSkillSkipped = (levelToSkip <= skill.level);
     return isSkillSkipped;
