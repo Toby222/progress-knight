@@ -10,7 +10,7 @@
 <body id="body" class="dark">
     <div class="w3-margin"> 
         <h1>Mod Knight</h1>
-        <div style="width: 1220px; height: 600px"> 
+        <div style="width: 1440px; height: 600px"> 
             <div class="panel w3-padding" style="width: 300px; height: auto; float: left">
                 <span id="deathText">
                     <div style="font-size: large; color: red">Age has caught up to you</div>
@@ -104,7 +104,7 @@
                 </span>
             </div>
 
-            <div class="panel w3-margin-left" style="width: 900px; height: 40px; float: left">
+            <div class="panel w3-margin-left" style="width: 1000px; height: 40px; float: left">
                 <div class="w3-button w3-bar-item tabButton" id="jobTabButton" onClick="setTab(this, 'jobs')">Jobs</div>
                 <div class="w3-button w3-bar-item tabButton" onClick="setTab(this, 'skills')">Skills</div>
                 <div class="w3-button w3-bar-item tabButton" id="shopTabButton" onClick="setTab(this, 'shop')">Shop</div>
@@ -112,7 +112,7 @@
                 <div class="w3-button w3-bar-item tabButton" onClick="setTab(this, 'settings')" style="float: right">Settings</div>
             </div>
 
-            <div class="panel w3-margin-left w3-margin-top w3-padding" style="width: 900px; height: auto; float: left">
+            <div class="panel w3-margin-left w3-margin-top w3-padding" style="width: 1000px; height: auto; float: left">
                 <template class="headerRowTaskTemplate">
                     <tr>
                         <th class="category" style="width: 250px">Job</th>
@@ -120,6 +120,7 @@
                         <th class="valueType">Value type</th>
                         <th>Xp/day</th>
                         <th>Xp left</th>
+                        <th>Days left</th>
                         <th class="maxLevel">Max level</th>
                         <th class="skipSkill">Skip</th>
                     </tr>
@@ -155,6 +156,7 @@
                         </td>
                         <td class="xpGain">Xp/day</td>
                         <td class="xpLeft">Xp left</td>
+                        <td class="daysLeft">Days left</td>
                         <td class="maxLevel">Max level</td>
                         <td class="skipSkill">
                             <input class="levelskipbox" type="number"></input>
