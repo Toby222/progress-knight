@@ -561,6 +561,9 @@ function updateTaskRows() {
 
         var progressFill = row.getElementsByClassName("progressFill")[0]
         progressFill.style.width = task.xp / task.getMaxXp() * 100 + "%"
+        //Display days till next level
+        progressFill.parentElement.getElementsByClassName("name")[0].textContent = task.name + " - " + Math.ceil(parseFloat(task.getXpLeft() / task.getXpGain()));
+        
         task == gameData.currentJob || task == gameData.currentSkill ? progressFill.classList.add("current") : progressFill.classList.remove("current")
 
         var valueElement = row.getElementsByClassName("value")[0]
