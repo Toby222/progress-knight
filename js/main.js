@@ -19,7 +19,8 @@ var gameData = {
 
 var tempData = {}
 
-var skillWithLowestMaxXp = null
+var skillWithLowestMaxXp = null;
+var skillWithLowestDaysLeft = null;
 
 const autoPromoteElement = document.getElementById("autoPromote")
 const autoLearnElement = document.getElementById("autoLearn")
@@ -758,6 +759,13 @@ function setSkillWithLowestMaxXp() {
     skillWithLowestMaxXp = gameData.taskData[skillName]
 }
 
+function setSkillWithLowestDaysLeft() {
+    skillWithLowestDaysLeft = Object.entries(gameData.taskData)
+        .filter(([taskName, task]) => task instanceof Skill && gameData.requirements[taskName].isCompleted() && !checkSkillSkipped(task))
+        .map(([_taskName, task]) => task)
+        .sort((a, b) => (a.getXpLeft() / a.getXpGain()) - (b.getXpLeft() / b.getXpGain()))[0];
+}
+
 function getKeyOfLowestValueFromDict(dict) {
     var values = []
     for (key in dict) {
@@ -776,8 +784,8 @@ function getKeyOfLowestValueFromDict(dict) {
 }
 
 function autoLearn() {
-    if (!autoLearnElement.checked || !skillWithLowestMaxXp) return
-    gameData.currentSkill = skillWithLowestMaxXp
+    if (!autoLearnElement.checked || !skillWithLowestDaysLeft) return
+    gameData.currentSkill = skillWithLowestDaysLeft
 }
 
 function yearsToDays(years) {
@@ -1175,4 +1183,5 @@ setTab(jobTabButton, "jobs")
 update()
 setInterval(update, 1000 / updateSpeed)
 setInterval(saveGameData, 3000)
-setInterval(setSkillWithLowestMaxXp, 1000)
+setInterval(setSkillWithLowestMaxXp, 100)
+setInterval(setSkillWithLowestDaysLeft, 100)
