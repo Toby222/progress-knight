@@ -637,7 +637,6 @@ function updateQuickTaskDisplay(taskType) {
 function updateRequiredRows(data, categoryType) {
   const requiredRows = document.getElementsByClassName("requiredRow");
   for (const requiredRow of requiredRows) {
-    console.log(categoryType, categoryType[requiredRow.id], requiredRow.id);
     let nextEntity = null;
     const category = categoryType[requiredRow.id];
     if (category === undefined) {
@@ -878,15 +877,7 @@ function autoPromote() {
 }
 
 function checkSkillSkipped(skill) {
-  const row = document.getElementById("row " + skill.name);
-  const levelToSkip = row.getElementsByClassName("levelskipbox")[0].value;
-
-  if (Number.isNaN(levelToSkip) || typeof levelToSkip === undefined || levelToSkip === "") {
-    return false;
-  }
-
-  const isSkillSkipped = levelToSkip <= skill.level;
-  return isSkillSkipped;
+  return document.getElementById("row " + skill.name).getElementsByClassName("checkbox")[0].checked;
 }
 
 function setSkillWithLowestDaysLeft() {
