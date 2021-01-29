@@ -24,8 +24,6 @@ let gameData = {
 
 const tempData = {};
 
-let skillWithLowestDaysLeft;
-
 const autoPromoteElement = document.getElementById("autoPromote");
 const autoLearnElement = document.getElementById("autoLearn");
 
@@ -880,16 +878,16 @@ function checkSkillSkipped(skill) {
   return document.getElementById("row " + skill.name).getElementsByClassName("checkbox")[0].checked;
 }
 
-function setSkillWithLowestDaysLeft() {
-  skillWithLowestDaysLeft = Object.entries(gameData.taskData)
+function getSkillWithLowestDaysLeft() {
+  return Object.entries(gameData.taskData)
     .filter(([taskName, task]) => task instanceof Skill && gameData.requirements[taskName].isCompleted() && !checkSkillSkipped(task))
     .map(([_taskName, task]) => task)
     .sort((a, b) => a.getXpLeft() / a.getXpGain() - b.getXpLeft() / b.getXpGain())[0];
 }
 
 function autoLearn() {
-  if (!autoLearnElement.checked || !skillWithLowestDaysLeft) return;
-  gameData.currentSkill = skillWithLowestDaysLeft;
+  if (!autoLearnElement.checked) return;
+  gameData.currentSkill = getSkillWithLowestDaysLeft() || gameData.currentSkill;
 }
 
 function getDay() {
@@ -1403,4 +1401,3 @@ setTab(jobTabButton, "jobs");
 update();
 setInterval(update, 1000 / UPDATE_SPEED);
 setInterval(saveGameData, 3000);
-setInterval(setSkillWithLowestDaysLeft, 100);
