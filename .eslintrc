@@ -1,0 +1,48 @@
+{
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es2021": true
+  },
+  "extends": ["eslint:recommended", "prettier", "prettier/standard"],
+  "parserOptions": {
+    "ecmaVersion": 12
+  },
+  "globals": {
+    "CoinRequirement": "writable",
+    "EvilRequirement": "writable",
+    "TaskRequirement": "writable",
+    "AgeRequirement": "writable",
+
+    "Skill": "writable",
+    "Job": "writable",
+    "Item": "writable",
+    "Property": "writable",
+    "Misc": "writable",
+
+    "setPause": "writable",
+    "setTab": "writable",
+    "applyMultipliers": "writable",
+    "applySpeed": "writable",
+    "daysToYears": "writable",
+
+    "gameData": "writable",
+    "itemCategories": "writable"
+  },
+  "rules": {
+    "no-unused-vars": [
+      "error",
+      {
+        "varsIgnorePattern": "(?:^_.{1,})",
+        "argsIgnorePattern": "(?:^_.{1,})"
+      }
+    ],
+    "func-names": ["off", "always"],
+    "func-style": ["error", "declaration"],
+    "no-inner-declarations": "off",
+    "prefer-const": "error",
+    "no-var": "error",
+    "no-shadow": "error",
+    "eqeqeq": ["error", "smart"]
+  }
+}

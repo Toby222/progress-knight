@@ -1,0 +1,12 @@
+{
+  "devDependencies": {
+    "eslint": "^7.18.0",
+    "eslint-config-prettier": "^7.2.0",
+    "eslint-plugin-standard": "^5.0.0",
+    "prettier": "^2.2.1"
+  },
+  "scripts": {
+    "lint": "eslint . --format visualstudio && prettier . --check",
+    "fix": "eslint . --fix && prettier . --write"
+  }
+}
